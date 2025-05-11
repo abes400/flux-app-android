@@ -4,23 +4,18 @@ import java.util.HexFormat;
 
 public class LampRVModel implements Serializable {
     public String name;
-    private String addr, rgb;
-    public int hue, sat, brightness;
+    private String addr, hexStr;
     public boolean autobrightness, isOn;
 
     public LampRVModel (String name,
                         String addr,
-                        int hue,
-                        int sat,
-                        int brightness,
+                        String hexStr,
                         boolean autobrightness,
                         boolean isOn) {
 
         this.name = name;
         this.addr = addr;
-        this.hue = hue;
-        this.sat = sat;
-        this.brightness = brightness;
+        this.hexStr = hexStr;
         this.autobrightness = autobrightness;
         this.isOn = isOn;
     }
@@ -29,8 +24,8 @@ public class LampRVModel implements Serializable {
         return addr;
     }
 
-    public String getRgb() {
-        return rgb;
+    public String getHexStr() {
+        return hexStr;
     }
 
     // hsb to rgb

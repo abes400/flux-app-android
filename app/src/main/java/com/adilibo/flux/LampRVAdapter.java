@@ -16,12 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class LampRVAdapter extends RecyclerView.Adapter<LampRVAdapter.Holder> {
-    ArrayList<LampRVModel> lampList;
     Context context;
+    FluxApp fluxApp;
 
-    public LampRVAdapter(Context context, ArrayList<LampRVModel> lampList) {
+    public LampRVAdapter(Context context, FluxApp fluxApp) {
         this.context = context;
-        this.lampList = lampList;
+        this.fluxApp = fluxApp;
     }
 
     @NonNull
@@ -33,23 +33,24 @@ public class LampRVAdapter extends RecyclerView.Adapter<LampRVAdapter.Holder> {
         return new LampRVAdapter.Holder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull LampRVAdapter.Holder holder, int position) {
-        holder.lampName.setText(lampList.get(position).name);
-        holder.lampToggle.setChecked(lampList.get(position).isOn);
-        holder.lamp = lampList.get(position);
+        LampRVModel lamp = fluxApp.getLampAt(position);
+        holder.lampName.setText(lamp.name);
+        holder.lampToggle.setChecked(lamp.isOn);
     }
 
     @Override
     public int getItemCount() {
-        return lampList.size();
+        return fluxApp.getLampCount();
     }
 
     public static class Holder extends RecyclerView.ViewHolder {
         TextView lampName;
         Switch lampToggle;
         CardView baseCard;
-        LampRVModel lamp;
+
         public Holder(@NonNull View itemView) {
             super(itemView);
             lampName = itemView.findViewById(R.id.lampName);
@@ -60,7 +61,7 @@ public class LampRVAdapter extends RecyclerView.Adapter<LampRVAdapter.Holder> {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), LampControl.class);
-                    intent.putExtra("Data", lamp);
+                    intent.putExtra("Index", getAdapterPosition());
                     v.getContext().startActivity(intent);
                 }
             });
