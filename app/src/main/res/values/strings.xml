@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Flux</string>
     <string name="back">Back</string>
+    <string name="auto">Auto Brightness</string>
+    <string name="edit">Edit Name</string>
+    <string name="onoff">Lamp is</string>
+
+    <string name="enab">Enabled</string>
+    <string name="disab">Disabled</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
 </resources>

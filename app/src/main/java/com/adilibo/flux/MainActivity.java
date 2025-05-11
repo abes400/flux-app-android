@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     FluxApp fluxApp;
+    LampRVAdapter lampRVAdapter;
     int i = 0;
 
     @Override
@@ -22,14 +23,14 @@ public class MainActivity extends AppCompatActivity {
         fluxApp = (FluxApp) getApplication();
 
         RecyclerView lampRecyclerView = findViewById(R.id.lampRecyclerView);
-        LampRVAdapter lampRVAdapter = new LampRVAdapter(this, fluxApp);
+        lampRVAdapter = new LampRVAdapter(this, fluxApp);
 
         Button test = findViewById(R.id.test);
 
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fluxApp.registerLamp(new LampRVModel("Lamp " + i, ""+i,"#000000",  i%2==0, i%4==0));
+                fluxApp.registerLamp(new LampRVModel("Lamp " + i, ""+i,"FFFFFFFF",  i%2==0, i%4==0));
                 i++;
                 lampRVAdapter.notifyDataSetChanged();
             }
@@ -38,5 +39,11 @@ public class MainActivity extends AppCompatActivity {
         lampRecyclerView.setAdapter(lampRVAdapter);
 
         lampRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        lampRVAdapter.notifyDataSetChanged();
     }
 }

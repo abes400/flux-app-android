@@ -2,32 +2,50 @@ package com.adilibo.flux;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
+import com.skydoves.colorpickerview.ColorPickerView;
+import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
+import com.skydoves.colorpickerview.sliders.BrightnessSlideBar;
 
 public class LampControl extends AppCompatActivity {
 
-    private Button backLC;
-    private TextView title;
+    ColorPickerView colorPickerView;
+    BrightnessSlideBar brightnessSlideBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lamp_control);
 
-        backLC = findViewById(R.id.back_LC);
-        title = findViewById(R.id.title_LC);
+        FluxApp fluxApp = (FluxApp) getApplication();
+        LampRVModel lamp = fluxApp.getLampAt(getIntent().getIntExtra("Index", 0));
 
-        Intent intent = getIntent();
+        Button backLC = findViewById(R.id.back_LC);
+        TextView title = findViewById(R.id.title_LC);
+        Switch toggleLC = findViewById(R.id.toggle_LC);
+        Switch autoBrightness = findViewById(R.id.autoBrightness);
+        colorPickerView = findViewById(R.id.colorPickerView);
+        brightnessSlideBar = findViewById(R.id.brightnessSlide);
+        colorPickerView.attachBrightnessSlider(brightnessSlideBar);
 
-        backLC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
+        colorPickerView.setColorListener((ColorEnvelopeListener) (envelope, fromUser) -> {
+            lamp.setHexStr(envelope.getHexCode());
         });
+
+
+        backLC.setOnClickListener(v -> finish());
+
+        toggleLC.setOnClickListener(v -> lamp.isOn = toggleLC.isChecked());
+
+        autoBrightness.setOnClickListener(v -> lamp.auto_brightness = autoBrightness.isChecked());
+
+        title.setText(lamp.name);
+        toggleLC.setChecked(lamp.isOn);
+        autoBrightness.setChecked(lamp.auto_brightness);
+        colorPickerView.setInitialColor(Color.parseColor("#" + lamp.getHexStr()));
     }
 }
