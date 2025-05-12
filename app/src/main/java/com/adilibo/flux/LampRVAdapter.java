@@ -2,7 +2,8 @@ package com.adilibo.flux;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+//import android.util.Log;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.google.android.material.card.MaterialCardView;
 
 public class LampRVAdapter extends RecyclerView.Adapter<LampRVAdapter.Holder> {
     Context context;
-    FluxApp fluxApp;
+    static FluxApp fluxApp;
 
     public LampRVAdapter(Context context, FluxApp fluxApp) {
         this.context = context;
@@ -39,6 +40,7 @@ public class LampRVAdapter extends RecyclerView.Adapter<LampRVAdapter.Holder> {
         LampRVModel lamp = fluxApp.getLampAt(position);
         holder.lampName.setText(lamp.name);
         holder.lampToggle.setChecked(lamp.isOn);
+        holder.baseCard.setStrokeColor(Color.parseColor("#"+lamp.getHexStr()));
     }
 
     @Override
@@ -49,7 +51,7 @@ public class LampRVAdapter extends RecyclerView.Adapter<LampRVAdapter.Holder> {
     public static class Holder extends RecyclerView.ViewHolder {
         TextView lampName;
         Switch lampToggle;
-        CardView baseCard;
+        MaterialCardView baseCard;
 
         public Holder(@NonNull View itemView) {
             super(itemView);
@@ -57,13 +59,14 @@ public class LampRVAdapter extends RecyclerView.Adapter<LampRVAdapter.Holder> {
             lampToggle = itemView.findViewById(R.id.lampToggle);
             baseCard = itemView.findViewById(R.id.base_card);
 
-            baseCard.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), LampControl.class);
-                    intent.putExtra("Index", getAdapterPosition());
-                    v.getContext().startActivity(intent);
-                }
+            baseCard.setOnClickListener(v -> {
+                Intent intent = new Intent(v.getContext(), LampControl.class);
+                intent.putExtra("Index", getAdapterPosition());
+                v.getContext().startActivity(intent);
+            });
+
+            lampToggle.setOnClickListener(v -> {
+                fluxApp.getLampAt(getAdapterPosition()).isOn = lampToggle.isChecked();
             });
 
         }

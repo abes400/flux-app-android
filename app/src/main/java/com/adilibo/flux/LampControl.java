@@ -38,9 +38,7 @@ public class LampControl extends AppCompatActivity {
 
 
         backLC.setOnClickListener(v -> finish());
-
         toggleLC.setOnClickListener(v -> lamp.isOn = toggleLC.isChecked());
-
         autoBrightness.setOnClickListener(v -> lamp.auto_brightness = autoBrightness.isChecked());
 
         title.setText(lamp.name);
