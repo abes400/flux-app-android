@@ -1,7 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Flux" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/primary_dark</item>
+
+
+        <item name="colorPrimaryContainer">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="colorSecondaryContainer">@color/primary_dark</item>
+
+    </style>
+
+    <style name="Theme.Flux" parent="Base.Theme.Flux" />
+    <style name="MCardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/gray</item>
+    </style>
+
+    <style name="Switch" parent="Theme.AppCompat.DayNight">
+        <item name="colorAccent">@color/light_green</item>
+        <item name="trackTint">@color/dark_down_shade</item>
     </style>
 </resources>

@@ -6,10 +6,11 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/base_card"
+        style="@style/MCardView"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_margin="7dp"
-        app:cardBackgroundColor="@color/white"
+        android:layout_marginHorizontal="7dp"
+        android:layout_marginBottom="7dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,11 +35,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Switch
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/lampToggle"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="30dp"
+                android:theme="@style/Switch"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

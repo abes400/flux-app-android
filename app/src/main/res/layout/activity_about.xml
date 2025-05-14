@@ -63,7 +63,8 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="adille ibo yaptı" />
+                android:gravity="center_horizontal"
+                android:text="@string/about_text" />
 
             <Button
                 android:id="@+id/github"
@@ -74,8 +75,11 @@
             <Button
                 android:id="@+id/erbaa"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/erbaa" />
+                android:layout_height="30dp"
+                android:backgroundTint="#005D5E64"
+                android:text="@string/erbaa"
+                android:textColor="#DFDFDF"
+                android:textSize="10dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

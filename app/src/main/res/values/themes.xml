@@ -1,9 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Flux" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="android:colorBackground">@color/background</item>
+
+        <item name="colorPrimaryContainer">@color/primary_light</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="colorSecondaryContainer">@color/primary_light</item>
+
     </style>
 
     <style name="Theme.Flux" parent="Base.Theme.Flux" />
+    <style name="MCardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/white</item>
+    </style>
+
+    <style name="Switch" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/green</item>
+        <item name="trackTint">@color/down_shade</item>
+    </style>
 </resources>

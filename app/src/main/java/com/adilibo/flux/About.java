@@ -5,11 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class About extends AppCompatActivity {
 
@@ -29,9 +25,10 @@ public class About extends AppCompatActivity {
             startActivity(browserIntent);
         });
 
-        erbaa.setOnClickListener(v -> {
+        erbaa.setOnLongClickListener(v -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://tr.wikipedia.org/wiki/Erbaa"));
             startActivity(browserIntent);
+            return true;
         });
     }
 }

@@ -11,6 +11,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,7 +51,7 @@ public class LampRVAdapter extends RecyclerView.Adapter<LampRVAdapter.Holder> {
 
     public static class Holder extends RecyclerView.ViewHolder {
         TextView lampName;
-        Switch lampToggle;
+        SwitchCompat lampToggle;
         MaterialCardView baseCard;
 
         public Holder(@NonNull View itemView) {
