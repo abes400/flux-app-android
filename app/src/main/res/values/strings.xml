@@ -9,4 +9,7 @@
     <string name="disab">Disabled</string>
     <string name="on">ON</string>
     <string name="off">OFF</string>
+
+    <string name="photo">From a Photo</string>
+    <string name="reset">Reset</string>
 </resources>

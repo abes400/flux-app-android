@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.google.android.material.card.MaterialCardView;
 import com.skydoves.colorpickerview.ColorPickerView;
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 import com.skydoves.colorpickerview.sliders.BrightnessSlideBar;
@@ -31,9 +33,11 @@ public class LampControl extends AppCompatActivity {
         colorPickerView = findViewById(R.id.colorPickerView);
         brightnessSlideBar = findViewById(R.id.brightnessSlide);
         colorPickerView.attachBrightnessSlider(brightnessSlideBar);
+        MaterialCardView pickerCardView = findViewById(R.id.picker_card);
 
         colorPickerView.setColorListener((ColorEnvelopeListener) (envelope, fromUser) -> {
             lamp.setHexStr(envelope.getHexCode());
+            pickerCardView.setStrokeColor(envelope.getColor());
         });
 
 
