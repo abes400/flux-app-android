@@ -90,7 +90,7 @@
                     android:text="@string/photo"
                     android:textColor="@color/black" />
 
-                <Button
+                <!--<Button
                     android:id="@+id/resetPhoto"
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="0dp"
@@ -98,7 +98,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#001B1A1A"
                     android:text="@string/reset"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black" />-->
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
