@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -24,11 +25,17 @@ public class MainActivity extends AppCompatActivity {
         lampRVAdapter = new LampRVAdapter(this, fluxApp);
 
         Button test = findViewById(R.id.test);
+        Button about = findViewById(R.id.about);
 
         test.setOnClickListener(v -> {
             fluxApp.registerLamp(new LampRVModel("Lamp " + i, ""+i,"FFFFFFFF",  i%2==0, i%4==0));
             i++;
             lampRVAdapter.notifyDataSetChanged();
+        });
+
+        about.setOnClickListener( v -> {
+            Intent intent = new Intent(v.getContext(), About.class);
+            v.getContext().startActivity(intent);
         });
 
         lampRecyclerView.setAdapter(lampRVAdapter);

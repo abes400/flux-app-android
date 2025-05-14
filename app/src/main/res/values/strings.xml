@@ -12,4 +12,8 @@
 
     <string name="photo">From a Photo</string>
     <string name="reset">Reset</string>
+    <string name="about">About</string>
+
+    <string name="github">See GitHub Page</string>
+    <string name="erbaa">Teleport to Erbaa</string>
 </resources>
