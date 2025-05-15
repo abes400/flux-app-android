@@ -1,8 +1,7 @@
 package com.adilibo.flux;
 
-import android.app.AlertDialog;
 import android.app.Application;
-import android.util.Log;
+//import android.util.Log;
 
 import java.util.ArrayList;
 

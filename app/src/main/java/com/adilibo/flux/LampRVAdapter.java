@@ -21,7 +21,7 @@ public class LampRVAdapter extends RecyclerView.Adapter<LampRVAdapter.Holder> {
 
     public LampRVAdapter(Context context, FluxApp fluxApp) {
         this.context = context;
-        this.fluxApp = fluxApp;
+        LampRVAdapter.fluxApp = fluxApp;
     }
 
     @NonNull
@@ -64,9 +64,8 @@ public class LampRVAdapter extends RecyclerView.Adapter<LampRVAdapter.Holder> {
                 v.getContext().startActivity(intent);
             });
 
-            lampToggle.setOnClickListener(v -> {
-                fluxApp.getLampAt(getAdapterPosition()).isOn = lampToggle.isChecked();
-            });
+            lampToggle.setOnClickListener(v ->
+                    fluxApp.getLampAt(getAdapterPosition()).isOn = lampToggle.isChecked());
         }
     }
 }
