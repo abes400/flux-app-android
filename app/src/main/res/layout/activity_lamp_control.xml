@@ -33,6 +33,21 @@
         app:layout_constraintStart_toStartOf="@+id/toolbar_LC"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/back"
+        android:textSize="0sp"
+        app:icon="@drawable/delete"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar_LC"
+        app:layout_constraintEnd_toStartOf="@+id/toggle_LC"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/title_LC"
         android:layout_width="0dp"
@@ -41,12 +56,11 @@
         android:layout_marginEnd="10dp"
         android:gravity="center_vertical"
         android:paddingBottom="20dp"
-        android:text="adsksaşdaslkşdas"
         android:textColor="@color/white"
         android:textColorLink="#FDFDFD"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar_LC"
-        app:layout_constraintEnd_toStartOf="@+id/toggle_LC"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toStartOf="@+id/delete"
         app:layout_constraintStart_toEndOf="@+id/back_LC"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
@@ -91,7 +105,7 @@
             style="@style/MCardView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_margin="10dp"
+            android:layout_marginHorizontal="10dp"
             app:cardCornerRadius="25dp"
             app:cardElevation="5dp">
 
@@ -104,21 +118,31 @@
 
                 <Button
                     android:id="@+id/uploadPhoto"
-                    style="?android:attr/buttonBarButtonStyle"
+                    style="@style/TButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:letterSpacing="0"
                     android:text="@string/photo"
-                    android:textColor="@android:color/holo_blue_dark" />
+                    android:textAllCaps="false"
+                    android:textSize="12dp"
+                    app:icon="@drawable/photo"
+                    app:iconGravity="textStart"
+                    app:iconPadding="10dp" />
 
                 <Button
                     android:id="@+id/resetPhoto"
-                    style="?android:attr/buttonBarButtonStyle"
+                    style="@style/TButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:letterSpacing="0"
                     android:text="@string/reset"
-                    android:textColor="@android:color/holo_blue_dark" />
+                    android:textAllCaps="false"
+                    android:textSize="12dp"
+                    app:icon="@drawable/remove_photo"
+                    app:iconGravity="textStart"
+                    app:iconPadding="10dp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

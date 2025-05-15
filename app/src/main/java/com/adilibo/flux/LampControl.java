@@ -30,19 +30,22 @@ import java.io.InputStream;
 public class LampControl extends AppCompatActivity {
 
     ColorPickerView colorPickerView;
+    FluxApp fluxApp;
     Toast success;
     Button resetPhoto;
     TextView title;
     LampRVModel lamp;
+    int index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lamp_control);
 
-        FluxApp fluxApp = (FluxApp) getApplication();
+        fluxApp = (FluxApp) getApplication();
         success = Toast.makeText(this, R.string.image_success, Toast.LENGTH_SHORT);
-        lamp = fluxApp.getLampAt(getIntent().getIntExtra("Index", 0));
+        index = getIntent().getIntExtra("Index", 0);
+        lamp = fluxApp.getLampAt(index);
 
         Button backLC = findViewById(R.id.back_LC);
         backLC.setOnClickListener(v -> finish());
@@ -50,6 +53,9 @@ public class LampControl extends AppCompatActivity {
         title = findViewById(R.id.title_LC);
         title.setText(lamp.getName());
         title.setOnClickListener(v -> renameLampDialog());
+
+        Button delete = findViewById(R.id.delete);
+        delete.setOnClickListener(v -> deleteLamp());
 
         SwitchCompat toggleLC = findViewById(R.id.toggle_LC);
         toggleLC.setChecked(lamp.isOn);
@@ -79,6 +85,18 @@ public class LampControl extends AppCompatActivity {
         SwitchCompat autoBrightness = findViewById(R.id.autoBrightness);
         autoBrightness.setChecked(lamp.auto_brightness);
         autoBrightness.setOnClickListener(v -> lamp.auto_brightness = autoBrightness.isChecked());
+    }
+
+    protected void deleteLamp() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.rem_title)
+                .setMessage(R.string.rem_desc)
+                .setPositiveButton(R.string.Y, (dialogInterface, i) -> {
+                    if(fluxApp.removeLampAt(index))
+                        finish();
+                })
+                .setNegativeButton(R.string.N, (inte, i) -> {})
+                .show();
     }
 
     protected void renameLampDialog() {

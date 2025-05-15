@@ -20,6 +20,13 @@
     <string name="cancel">Cancel</string>
     <string name="tapedit">Tap to rename</string>
 
+    <string name="rem">Remove</string>
+    <string name="rem_title">Are you sure you want to remove this lamp?</string>
+    <string name="rem_desc">This action is irreversible.</string>
+    <string name="Y">Yes</string>
+    <string name="N">No</string>
+
+
     <string name="github">See GitHub Page</string>
     <string name="erbaa">P</string>
     <string name="about_text">

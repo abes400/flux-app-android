@@ -8,7 +8,7 @@
 
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar_home"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -26,11 +26,10 @@
         android:layout_marginEnd="10dp"
         android:text="@string/back"
         android:textSize="0sp"
-        app:icon="@android:drawable/ic_dialog_info"
+        app:icon="@drawable/info"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
-        app:iconSize="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,8 +38,8 @@
         android:layout_width="84dp"
         android:layout_height="29dp"
         android:layout_marginStart="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar_home"
+        app:layout_constraintStart_toStartOf="@+id/toolbar_home"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
@@ -56,17 +55,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:tint="@android:color/white"/>
 
-    <Button
-        android:id="@+id/test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="160dp"
-        android:text="Button"
-        app:iconPadding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lampRecyclerView"
         android:layout_width="0dp"
@@ -78,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_home"
         tools:listitem="@layout/card_design" />
 
     <androidx.cardview.widget.CardView
@@ -92,7 +80,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/lampRecyclerView"
         app:layout_constraintEnd_toEndOf="@+id/lampRecyclerView"
         app:layout_constraintStart_toStartOf="@+id/lampRecyclerView"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_home">
 
         <LinearLayout
             android:layout_width="match_parent"

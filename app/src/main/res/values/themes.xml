@@ -20,4 +20,12 @@
         <item name="colorAccent">@color/green</item>
         <item name="trackTint">@color/down_shade</item>
     </style>
+
+    <style name="TButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="materialThemeOverlay">@style/TButtonOverlay</item>
+    </style>
+
+    <style name="TButtonOverlay">
+        <item name="colorPrimary">@color/black</item>
+    </style>
 </resources>

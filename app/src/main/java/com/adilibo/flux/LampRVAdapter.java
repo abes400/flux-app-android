@@ -7,12 +7,10 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
@@ -69,7 +67,6 @@ public class LampRVAdapter extends RecyclerView.Adapter<LampRVAdapter.Holder> {
             lampToggle.setOnClickListener(v -> {
                 fluxApp.getLampAt(getAdapterPosition()).isOn = lampToggle.isChecked();
             });
-
         }
     }
 }

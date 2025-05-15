@@ -40,6 +40,7 @@
         android:text="@string/about"
         android:textColor="@color/white"
         android:textColorLink="#FDFDFD"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar_about"
         app:layout_constraintStart_toEndOf="@+id/back_ABT"
         app:layout_constraintTop_toTopOf="parent" />
@@ -60,7 +61,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/aboutText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -79,7 +80,8 @@
                 android:backgroundTint="#005D5E64"
                 android:text="@string/erbaa"
                 android:textColor="#DFDFDF"
-                android:textSize="10dp" />
+                android:textSize="10dp"
+                android:visibility="gone" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
