@@ -3,6 +3,7 @@ package com.adilibo.flux;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,7 +12,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,49 +32,68 @@ public class LampControl extends AppCompatActivity {
     ColorPickerView colorPickerView;
     Toast success;
     Button resetPhoto;
+    TextView title;
+    LampRVModel lamp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lamp_control);
 
-        success = Toast.makeText(this, R.string.image_success, Toast.LENGTH_SHORT);
-
         FluxApp fluxApp = (FluxApp) getApplication();
-        LampRVModel lamp = fluxApp.getLampAt(getIntent().getIntExtra("Index", 0));
+        success = Toast.makeText(this, R.string.image_success, Toast.LENGTH_SHORT);
+        lamp = fluxApp.getLampAt(getIntent().getIntExtra("Index", 0));
 
         Button backLC = findViewById(R.id.back_LC);
+        backLC.setOnClickListener(v -> finish());
+
+        title = findViewById(R.id.title_LC);
+        title.setText(lamp.getName());
+        title.setOnClickListener(v -> renameLampDialog());
+
+        SwitchCompat toggleLC = findViewById(R.id.toggle_LC);
+        toggleLC.setChecked(lamp.isOn);
+        toggleLC.setOnClickListener(v -> lamp.isOn = toggleLC.isChecked());
+
         Button uploadPhoto = findViewById(R.id.uploadPhoto);
+        uploadPhoto.setOnClickListener(v -> uploadPicture());
+
         resetPhoto = findViewById(R.id.resetPhoto);
         resetPhoto.setEnabled(false);
-        TextView title = findViewById(R.id.title_LC);
-        SwitchCompat toggleLC = findViewById(R.id.toggle_LC);
-        SwitchCompat autoBrightness = findViewById(R.id.autoBrightness);
-        colorPickerView = findViewById(R.id.colorPickerView);
-        BrightnessSlideBar brightnessSlideBar = findViewById(R.id.brightnessSlide);
-        colorPickerView.attachBrightnessSlider(brightnessSlideBar);
-        MaterialCardView pickerCardView = findViewById(R.id.picker_card);
-
-        colorPickerView.setColorListener((ColorEnvelopeListener) (envelope, fromUser) -> {
-            lamp.setHexStr(envelope.getHexCode());
-            pickerCardView.setStrokeColor(envelope.getColor());
-        });
-
-
-        backLC.setOnClickListener(v -> finish());
-        toggleLC.setOnClickListener(v -> lamp.isOn = toggleLC.isChecked());
-        autoBrightness.setOnClickListener(v -> lamp.auto_brightness = autoBrightness.isChecked());
-        uploadPhoto.setOnClickListener(v -> uploadPicture());
         resetPhoto.setOnClickListener( v -> {
             colorPickerView.setHsvPaletteDrawable();
             resetPhoto.setEnabled(false);
         });
 
-        title.setText(lamp.name);
-        toggleLC.setChecked(lamp.isOn);
-        autoBrightness.setChecked(lamp.auto_brightness);
-        colorPickerView.setInitialColor(Color.parseColor("#" + lamp.getHexStr()));
+        BrightnessSlideBar brightnessSlideBar = findViewById(R.id.brightnessSlide);
+        MaterialCardView pickerCardView = findViewById(R.id.picker_card);
 
+        colorPickerView = findViewById(R.id.colorPickerView);
+        colorPickerView.attachBrightnessSlider(brightnessSlideBar);
+        colorPickerView.setInitialColor(Color.parseColor("#" + lamp.getHexStr()));
+        colorPickerView.setColorListener((ColorEnvelopeListener) (envelope, fromUser) -> {
+            lamp.setHexStr(envelope.getHexCode());
+            pickerCardView.setStrokeColor(envelope.getColor());
+        });
+
+        SwitchCompat autoBrightness = findViewById(R.id.autoBrightness);
+        autoBrightness.setChecked(lamp.auto_brightness);
+        autoBrightness.setOnClickListener(v -> lamp.auto_brightness = autoBrightness.isChecked());
+    }
+
+    protected void renameLampDialog() {
+        final EditText input = new EditText(this);
+        input.setSingleLine(true);
+        input.setText(title.getText().toString());
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.rename)
+            .setView(input)
+            .setPositiveButton(R.string.ok, (dialogInterface, i) -> {
+                String newName = input.getText().toString();
+                if(lamp.rename(input.getText().toString())) title.setText(newName);
+            })
+            .setNegativeButton(R.string.cancel, ((dialogInterface, i) ->{}))
+            .show();
     }
     protected void uploadPicture() {
         Intent imageIntent = new Intent(Intent.ACTION_PICK);

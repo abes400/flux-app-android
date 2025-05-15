@@ -30,6 +30,16 @@ public class LampRVModel implements Serializable {
     }
     public void setHexStr(String hexStr) { this.hexStr = hexStr; }
 
+    public String getName() { return name; }
+
+    public synchronized boolean rename(String newName) {
+        if(!newName.isEmpty() && !newName.equals(name)) {
+            name = newName;
+            return true;
+        }
+        return false;
+    }
+
     // hsb to rgb
     // https://stackoverflow.com/questions/7896280/converting-from-hsv-hsb-in-java-to-rgb-without-using-java-awt-color-disallowe
 

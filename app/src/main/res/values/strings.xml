@@ -18,6 +18,11 @@
     <string name="erbaa">P</string>
     <string name="image_success">Tap anywhere on the image to set color.</string>
 
+    <string name="rename">Rename Lamp</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="tapedit">Tap to rename</string>
+
     <string name="about_text">
     <![CDATA[
         FLUX\n\n
