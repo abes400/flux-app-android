@@ -26,6 +26,7 @@
         android:layout_marginEnd="10dp"
         android:text="@string/back"
         android:textSize="0sp"
+        android:tooltipText="@string/about"
         app:icon="@drawable/info"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
@@ -37,7 +38,8 @@
         android:id="@+id/logo"
         android:layout_width="84dp"
         android:layout_height="29dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="15dp"
+        android:contentDescription="@string/welcome"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar_home"
         app:layout_constraintStart_toStartOf="@+id/toolbar_home"
         app:layout_constraintTop_toTopOf="parent"
@@ -51,9 +53,10 @@
         android:layout_margin="16dp"
         android:contentDescription="@string/about"
         android:src="@android:drawable/ic_input_add"
+        android:tooltipText="@string/addLamp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@android:color/white"/>
+        app:tint="@android:color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lampRecyclerView"

@@ -4,6 +4,9 @@
     <string name="auto">Auto Brightness</string>
     <string name="edit">Edit Name</string>
     <string name="onoff">Lamp is</string>
+    <string name="toggleL">Toggle Lamp</string>
+
+    <string name="cardDesign">Tap to see the advanced controls of this lamp.</string>
 
     <string name="enab">Enabled</string>
     <string name="disab">Disabled</string>

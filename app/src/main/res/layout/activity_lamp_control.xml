@@ -25,6 +25,7 @@
         android:layout_marginStart="10dp"
         android:text="@string/back"
         android:textSize="0sp"
+        android:tooltipText="@string/back"
         app:icon="?attr/actionModeCloseDrawable"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
@@ -38,8 +39,9 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="10dp"
-        android:text="@string/back"
+        android:text="@string/rem"
         android:textSize="0sp"
+        android:tooltipText="@string/rem"
         app:icon="@drawable/delete"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
@@ -58,7 +60,7 @@
         android:paddingBottom="20dp"
         android:textColor="@color/white"
         android:textColorLink="#FDFDFD"
-        android:textSize="18dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar_LC"
         app:layout_constraintEnd_toStartOf="@+id/delete"
         app:layout_constraintStart_toEndOf="@+id/back_LC"
@@ -73,12 +75,11 @@
         android:text="@string/tapedit"
         android:textColor="@color/white"
         android:textColorLink="#FDFDFD"
-        android:textSize="10dp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar_LC"
         app:layout_constraintStart_toEndOf="@+id/back_LC" />
 
     <androidx.appcompat.widget.SwitchCompat
-        android:theme="@style/Switch"
         android:id="@+id/toggle_LC"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -87,6 +88,8 @@
         android:textOff="@string/off"
         android:textOn="@string/on"
         android:textSize="0sp"
+        android:theme="@style/Switch"
+        android:tooltipText="@string/toggleL"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar_LC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -125,7 +128,7 @@
                     android:letterSpacing="0"
                     android:text="@string/photo"
                     android:textAllCaps="false"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     app:icon="@drawable/photo"
                     app:iconGravity="textStart"
                     app:iconPadding="10dp" />
@@ -139,7 +142,7 @@
                     android:letterSpacing="0"
                     android:text="@string/reset"
                     android:textAllCaps="false"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     app:icon="@drawable/remove_photo"
                     app:iconGravity="textStart"
                     app:iconPadding="10dp" />
@@ -147,11 +150,11 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            style="@style/MCardView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            app:cardElevation="5dp"
-            style="@style/MCardView">
+            app:cardElevation="5dp">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -173,12 +176,12 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/picker_card"
+            style="@style/MCardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_marginBottom="20dp"
-            app:cardElevation="5dp"
-            style="@style/MCardView">
+            app:cardElevation="5dp">
 
             <com.skydoves.colorpickerview.ColorPickerView
                 android:id="@+id/colorPickerView"
@@ -188,19 +191,19 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            style="@style/MCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            app:cardElevation="5dp"
-            style="@style/MCardView">
+            app:cardElevation="5dp">
 
             <androidx.appcompat.widget.SwitchCompat
-                android:theme="@style/Switch"
                 android:id="@+id/autoBrightness"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="15dp"
-                android:text="@string/auto" />
+                android:text="@string/auto"
+                android:theme="@style/Switch" />
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>

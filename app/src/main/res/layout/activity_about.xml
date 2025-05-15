@@ -40,7 +40,7 @@
         android:text="@string/about"
         android:textColor="@color/white"
         android:textColorLink="#FDFDFD"
-        android:textSize="18dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar_about"
         app:layout_constraintStart_toEndOf="@+id/back_ABT"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,7 +48,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:tooltipText="@string/back"
         app:cardCornerRadius="10dp"
+        app:cardElevation="2dp"
         app:contentPadding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +82,7 @@
                 android:backgroundTint="#005D5E64"
                 android:text="@string/erbaa"
                 android:textColor="#DFDFDF"
-                android:textSize="10dp"
+                android:textSize="12sp"
                 android:visibility="gone" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

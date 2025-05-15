@@ -12,8 +12,11 @@
         android:layout_height="70dp"
         android:layout_marginHorizontal="7dp"
         android:layout_marginBottom="7dp"
+        android:elevation="0dp"
+        android:tooltipText="@string/cardDesign"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
+        app:cardMaxElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,14 +26,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:elevation="0dp">
 
             <TextView
                 android:id="@+id/lampName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:text="TextView"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -42,6 +45,7 @@
                 android:layout_height="48dp"
                 android:layout_marginEnd="30dp"
                 android:theme="@style/Switch"
+                android:tooltipText="@string/toggleL"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
