@@ -13,9 +13,6 @@
     <string name="photo">From a Photo</string>
     <string name="reset">Reset</string>
     <string name="about">About</string>
-
-    <string name="github">See GitHub Page</string>
-    <string name="erbaa">P</string>
     <string name="image_success">Tap anywhere on the image to set color.</string>
 
     <string name="rename">Rename Lamp</string>
@@ -23,6 +20,8 @@
     <string name="cancel">Cancel</string>
     <string name="tapedit">Tap to rename</string>
 
+    <string name="github">See GitHub Page</string>
+    <string name="erbaa">P</string>
     <string name="about_text">
     <![CDATA[
         FLUX\n\n
@@ -36,6 +35,15 @@
 
         Distributed under MIT license.\n
     ]]>
+    </string>
+
+    <string name="addLamp">Add Lamp</string>
+    <string name="welcome"><b>Welcome to FLUX</b></string>
+    <string name="desc">
+        <![CDATA[
+        At the moment there is no lamp registered.\n
+        Tap here to pair your first Flux lamp.
+        ]]>
     </string>
 
 </resources>

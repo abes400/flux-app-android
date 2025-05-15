@@ -1,6 +1,7 @@
 package com.adilibo.flux;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,8 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
         Button test = findViewById(R.id.test);
         Button about = findViewById(R.id.about);
+        CardView noLamp = findViewById(R.id.no_lamp);
 
         test.setOnClickListener(v -> {
+            if(fluxApp.getLampCount() == 0)
+                noLamp.setVisibility(CardView.GONE);
             fluxApp.registerLamp(new LampRVModel("Lamp " + i, ""+i,"FFFFFFFF",  i%2==0, i%4==0));
             i++;
             lampRVAdapter.notifyDataSetChanged();
@@ -41,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
         lampRecyclerView.setAdapter(lampRVAdapter);
 
         lampRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        if(fluxApp.getLampCount() == 0) {
+            noLamp.setVisibility(CardView.VISIBLE);
+        } else {
+            noLamp.setVisibility(CardView.GONE);
+        }
     }
 
     @Override

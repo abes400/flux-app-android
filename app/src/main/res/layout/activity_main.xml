@@ -15,6 +15,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,6 +23,7 @@
         android:id="@+id/about"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginEnd="10dp"
         android:text="@string/back"
         android:textSize="0sp"
         app:icon="@android:drawable/ic_dialog_info"
@@ -31,6 +33,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="84dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addDevice"
@@ -48,8 +60,8 @@
         android:id="@+id/test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="292dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="160dp"
         android:text="Button"
         app:iconPadding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +69,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lampRecyclerView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:paddingTop="10dp"
@@ -67,7 +79,39 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:listitem="@layout/card_design"
-        />
+        tools:listitem="@layout/card_design" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/no_lamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:visibility="visible"
+        app:cardCornerRadius="15dp"
+        app:contentPadding="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/lampRecyclerView"
+        app:layout_constraintEnd_toEndOf="@+id/lampRecyclerView"
+        app:layout_constraintStart_toStartOf="@+id/lampRecyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="@string/welcome" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/desc" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
