@@ -78,7 +78,7 @@
             <Button
                 android:id="@+id/erbaa"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="35dp"
                 android:backgroundTint="#005D5E64"
                 android:text="@string/erbaa"
                 android:textColor="#DFDFDF"

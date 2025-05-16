@@ -17,8 +17,8 @@ import java.util.ArrayList;
 
 
 public class FluxApp extends Application implements LifecycleObserver {
-    private final String FILENAME = "LAMP_DATA";
-    private ArrayList<LampRVModel> _lamps = new ArrayList<>();
+    final String FILENAME = "LAMP_DATA";
+    ArrayList<LampRVModel> _lamps;
 
     @Override
     public void onCreate() {
@@ -30,8 +30,8 @@ public class FluxApp extends Application implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     public void onAppBackgrounded() {saveLampData();}
 
-    public synchronized LampRVModel getLampAt(int index) {return _lamps.get(index);}
     public synchronized boolean registerLamp(LampRVModel newLamp) {return _lamps.add(newLamp);}
+    public synchronized LampRVModel getLampAt(int index) {return _lamps.get(index);}
     public synchronized int getLampCount() {return _lamps.size();}
     public synchronized boolean removeLampAt(int index) {
         if(index >= 0 && index < _lamps.size()){
@@ -56,7 +56,10 @@ public class FluxApp extends Application implements LifecycleObserver {
             ObjectInputStream OIStream = new ObjectInputStream(FIStream);
             _lamps = (ArrayList<LampRVModel>) OIStream.readObject();
             OIStream.close();
-        } catch(Exception e) {e.printStackTrace();}
+        } catch(Exception e) {
+            e.printStackTrace();
+            _lamps = new ArrayList<>();
+        }
     }
 }
 

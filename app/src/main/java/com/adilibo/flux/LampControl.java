@@ -28,13 +28,13 @@ import java.io.InputStream;
 
 public class LampControl extends AppCompatActivity {
 
-    ColorPickerView colorPickerView;
-    FluxApp fluxApp;
-    Toast success;
-    Button resetPhoto;
-    TextView title;
-    LampRVModel lamp;
     int index;
+    Toast success;
+    TextView title;
+    FluxApp fluxApp;
+    LampRVModel lamp;
+    Button resetPhoto;
+    ColorPickerView colorPickerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +125,7 @@ public class LampControl extends AppCompatActivity {
         try {
             // Just copied and pasted it directly from documentation, please don't ask me how it works
             final Uri imageURi = data.getData();
+            assert imageURi != null;
             final InputStream imageStream = getContentResolver().openInputStream(imageURi);
             final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
             Drawable drawable = new BitmapDrawable(getResources(), selectedImage);
@@ -133,8 +134,6 @@ public class LampControl extends AppCompatActivity {
             success.show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (RuntimeException re) {
-            re.printStackTrace();
         }
     }
 }

@@ -12,10 +12,10 @@ import androidx.appcompat.widget.Toolbar;
 
 
 public class MainActivity extends AppCompatActivity {
-    FluxApp fluxApp;
-    LampRVAdapter lampRVAdapter;
-    CardView noLamp;
     int i = 0;
+    FluxApp fluxApp;
+    CardView noLamp;
+    LampRVAdapter lampRVAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
