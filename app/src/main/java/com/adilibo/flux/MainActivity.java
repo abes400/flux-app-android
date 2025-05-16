@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 public class MainActivity extends AppCompatActivity {
     int i = 0;
@@ -43,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView lampRecyclerView = findViewById(R.id.lampRecyclerView);
         lampRecyclerView.setAdapter(lampRVAdapter);
         lampRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        FloatingActionButton addDevice = findViewById(R.id.addDevice);
+        addDevice.setOnClickListener(v -> regLampTemp());
 
         showHideNoLamp();
     }

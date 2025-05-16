@@ -12,6 +12,12 @@
     </style>
 
     <style name="Theme.Flux" parent="Base.Theme.Flux" />
+
+    <style name="Splash" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/none</item>
+        <item name="android:windowBackground">@drawable/gradient_light</item>
+    </style>
+
     <style name="MCardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@color/white</item>
     </style>
