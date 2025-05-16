@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="back">Zurück</string>
+    <string name="auto">Automatische Helligkeit</string>
+    <string name="edit">Umbenennen</string>
+    <string name="onoff">Lamp ist</string>
+    <string name="toggleL">Lampe Umschalten</string>
+    <string name="cardDesign">Tippe, um die erweiterten Steuerungen dieser Lampe zu sehen.</string>
+    <string name="enab">Aktiviert</string>
+    <string name="disab">Deaktiviert</string>
+    <string name="on">EIN</string>
+    <string name="off">AUS</string>
+    <string name="photo">Bild Hinzufügen</string>
+    <string name="reset">Zurücksetzen</string>
+    <string name="about">Über FLUX</string>
+    <string name="image_success">Tippe irgendwo auf das Bild, um die Farbe festzulegen.</string>
+    <string name="rename">Lampe Umbenennen</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="tapedit">Tippe, um umzubenennen.</string>
+    <string name="rem_desc">Diese Aktion ist unwiderruflich.</string>
+    <string name="Y">Ja</string>
+    <string name="N">Nein</string>
+    <string name="rem">Entfernen</string>
+    <string name="rem_title">Sind Sie sicher, dass Sie diese Lampe entfernen möchten?</string>
+    <string name="github">GitHub-seite Ansehen</string>
+    <string name="about_text">
+    <![CDATA[
+        FLUX\n\n
+        v1.0 \n\n
+
+        Für das ISE414-Projekt entwickelt. \n\n
+
+        Adil Çolak - CMPE \n
+        İbrahim Kaan Bilir - CMPE \n\n
+
+        Wird unter der MIT-Lizenz vertrieben.“\n
+    ]]>
+    </string>
+    <string name="addLamp">Lampe Hinzufügen</string>
+    <string name="welcome"><b>Willkommen bei FLUX</b></string>
+    <string name="desc">
+    <![CDATA[
+        Derzeit ist keine Lampe verbunden.\n\n
+        Tippen Sie hier, um Ihre erste\n Flux-Lampe zu verbinden.
+    ]]>
+    </string>
+</resources>

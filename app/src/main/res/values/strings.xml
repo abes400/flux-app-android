@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Flux</string>
+    <string name="app_name" translatable="false">Flux</string>
     <string name="back">Back</string>
     <string name="auto">Auto Brightness</string>
-    <string name="edit">Edit Name</string>
+    <string name="edit">Rename</string>
     <string name="onoff">Lamp is</string>
     <string name="toggleL">Toggle Lamp</string>
 
@@ -13,15 +13,15 @@
     <string name="on">ON</string>
     <string name="off">OFF</string>
 
-    <string name="photo">From a Photo</string>
+    <string name="photo">Add Image</string>
     <string name="reset">Reset</string>
-    <string name="about">About</string>
+    <string name="about">About FLUX</string>
     <string name="image_success">Tap anywhere on the image to set color.</string>
 
     <string name="rename">Rename Lamp</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="tapedit">Tap to rename</string>
+    <string name="tapedit">Tap to rename.</string>
 
     <string name="rem">Remove</string>
     <string name="rem_title">Are you sure you want to remove this lamp?</string>
@@ -31,13 +31,13 @@
 
 
     <string name="github">See GitHub Page</string>
-    <string name="erbaa">P</string>
+    <string name="erbaa" translatable="false">P</string>
     <string name="about_text">
     <![CDATA[
         FLUX\n\n
-        ver. 1.0 \n\n
+        v1.0 \n\n
 
-        Designed for ISE414 Project. \n\n
+        Developed for ISE414 Project. \n\n
 
         Adil Çolak - CMPE \n
         İbrahim Kaan Bilir - CMPE \n\n
@@ -49,10 +49,10 @@
     <string name="addLamp">Add Lamp</string>
     <string name="welcome"><b>Welcome to FLUX</b></string>
     <string name="desc">
-        <![CDATA[
-        At the moment there is no lamp registered.\n
+    <![CDATA[
+        At the moment there is no lamp paired.\n\n
         Tap here to pair your first Flux lamp.
-        ]]>
+    ]]>
     </string>
 
 </resources>

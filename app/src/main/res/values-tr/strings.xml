@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="back">Geri</string>
+    <string name="auto">Otomatik Parlaklık</string>
+    <string name="edit">Yeniden Adlandır</string>
+    <string name="onoff">Lamba:</string>
+    <string name="toggleL">Lambayı Aç/Kapa</string>
+    <string name="cardDesign">Bu lambanın gelişmiş kontrollerini görmek için dokunun.</string>
+    <string name="enab">Etkin</string>
+    <string name="disab">Devre Dışı</string>
+    <string name="on">Açık</string>
+    <string name="off">Kapalı</string>
+    <string name="photo">Görsel Ekle</string>
+    <string name="reset">Sıfırla</string>
+    <string name="about">FLUX Hakkında</string>
+    <string name="image_success">Rengi ayarlamak için görselin herhangi bir yerine dokunun.</string>
+    <string name="rename">Lambayı Yeniden Adlandır</string>
+    <string name="ok">Tamam</string>
+    <string name="cancel">Vazgeç</string>
+    <string name="tapedit">Yeniden adlandırmak için dokunun.</string>
+    <string name="rem">Kaldır</string>
+    <string name="rem_title">Bu lambayı kaldırmak istediğinizden emin misiniz?</string>
+    <string name="rem_desc">Bu eylem geri alınamaz.</string>
+    <string name="Y">Evet</string>
+    <string name="N">Hayır</string>
+    <string name="github">GitHub Sayfasına Git</string>
+    <string name="about_text">
+    <![CDATA[
+        FLUX\n\n
+        v1.0 \n\n
+
+        ISE414 Projesi için geliştirilmiştir. \n\n
+
+        Adil Çolak - CMPE \n
+        İbrahim Kaan Bilir - CMPE \n\n
+
+        MIT lisansıyla dağıtılmaktadır.\n
+    ]]>
+    </string>
+    <string name="addLamp">Lamba Ekle</string>
+    <string name="welcome"><b>FLUX\'a Hoş Geldiniz</b></string>
+    <string name="desc">
+    <![CDATA[
+        Şu anda eşlenmiş bir lambanız yok.\n\n
+        İlk Flux lambanızı eşlemek için dokunun.
+    ]]>
+    </string>
+</resources>
