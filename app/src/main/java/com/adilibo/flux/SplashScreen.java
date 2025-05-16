@@ -23,10 +23,8 @@ public class SplashScreen extends AppCompatActivity {
         Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 
 
-        handler.postDelayed((Runnable) () -> {
-            logo.startAnimation(fadeIn);
-        }, 100);
-        handler.postDelayed((Runnable) () -> {
+        handler.postDelayed(() -> logo.startAnimation(fadeIn), 100);
+        handler.postDelayed(() -> {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
