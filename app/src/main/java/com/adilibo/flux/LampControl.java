@@ -102,6 +102,7 @@ public class LampControl extends AppCompatActivity {
         final EditText input = new EditText(this);
         input.setSingleLine(true);
         input.setText(title.getText().toString());
+        input.setPadding(50, 50, 50, 50);
         new AlertDialog.Builder(this)
             .setTitle(R.string.rename)
             .setView(input)
