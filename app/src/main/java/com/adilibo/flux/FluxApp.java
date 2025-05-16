@@ -30,7 +30,7 @@ public class FluxApp extends Application implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     public void onAppBackgrounded() {saveLampData();}
 
-    public synchronized boolean registerLamp(LampRVModel newLamp) {return _lamps.add(newLamp);}
+    public synchronized void registerLamp(LampRVModel newLamp) {_lamps.add(newLamp);}
     public synchronized LampRVModel getLampAt(int index) {return _lamps.get(index);}
     public synchronized int getLampCount() {return _lamps.size();}
     public synchronized boolean removeLampAt(int index) {

@@ -23,10 +23,11 @@ public class LampRVModel implements Serializable {
         this.isOn = isOn;
     }
 
+    /*
     public String getAddress() {
         return address;
     }
-
+    */
     public String getHexStr() {
         return hexStr;
     }

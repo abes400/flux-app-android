@@ -116,6 +116,7 @@ public class LampControl extends AppCompatActivity {
     protected void uploadPicture() {
         Intent imageIntent = new Intent(Intent.ACTION_PICK);
         imageIntent.setType("image/*");
+        //noinspection deprecation
         startActivityForResult(imageIntent, 1);
     }
 

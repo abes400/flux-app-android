@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         showHideNoLamp();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onResume() {
         super.onResume();
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         else noLamp.setVisibility(CardView.GONE);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     void regLampTemp() {
         if(fluxApp.getLampCount() == 0)
             noLamp.setVisibility(CardView.GONE);
