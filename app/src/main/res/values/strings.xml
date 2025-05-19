@@ -54,5 +54,6 @@
         Tap here to pair your first Flux lamp.
     ]]>
     </string>
+    <string name="lamp">Lamp</string>
 
 </resources>

@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     void regLampTemp() {
         if(fluxApp.getLampCount() == 0)
             noLamp.setVisibility(CardView.GONE);
-        fluxApp.registerLamp(new LampRVModel("Lamp " + i, ""+i,"FFFFFFFF",  i%2==0, i%4==0));
+        fluxApp.registerLamp(new LampRVModel(getString(R.string.lamp) + " " + i, ""+i,"FFFFFFFF",  i%2==0, i%4==0));
         i = fluxApp.getLampCount();
         lampRVAdapter.notifyDataSetChanged();
     }
