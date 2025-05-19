@@ -86,6 +86,31 @@ public class LampControl extends AppCompatActivity {
         autoBrightness.setOnClickListener(v -> lamp.auto_brightness = autoBrightness.isChecked());
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        fluxApp.saveLampData();
+    }
+
+    @Override
+    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        try {
+            // Just copied and pasted it directly from documentation, please don't ask me how it works
+            final Uri imageURi = data.getData();
+            assert imageURi != null;
+            final InputStream imageStream = getContentResolver().openInputStream(imageURi);
+            final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+            Drawable drawable = new BitmapDrawable(getResources(), selectedImage);
+            colorPickerView.setPaletteDrawable(drawable);
+            resetPhoto.setEnabled(true);
+            success.show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     protected void deleteLamp() {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.rem_title)
@@ -118,24 +143,5 @@ public class LampControl extends AppCompatActivity {
         imageIntent.setType("image/*");
         //noinspection deprecation
         startActivityForResult(imageIntent, 1);
-    }
-
-    @Override
-    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        try {
-            // Just copied and pasted it directly from documentation, please don't ask me how it works
-            final Uri imageURi = data.getData();
-            assert imageURi != null;
-            final InputStream imageStream = getContentResolver().openInputStream(imageURi);
-            final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-            Drawable drawable = new BitmapDrawable(getResources(), selectedImage);
-            colorPickerView.setPaletteDrawable(drawable);
-            resetPhoto.setEnabled(true);
-            success.show();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 }

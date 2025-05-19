@@ -38,7 +38,6 @@
         android:id="@+id/delete"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="10dp"
         android:text="@string/rem"
         android:textSize="0sp"
         android:tooltipText="@string/rem"

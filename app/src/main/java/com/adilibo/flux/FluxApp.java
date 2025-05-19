@@ -32,7 +32,7 @@ public class FluxApp extends Application {
         return false;
     }
 
-    private synchronized void saveLampData() {
+    public synchronized void saveLampData() {
         try {
             FileOutputStream FOStream = openFileOutput(FILENAME, Context.MODE_PRIVATE);
             ObjectOutputStream OOStream = new ObjectOutputStream(FOStream);
@@ -41,7 +41,7 @@ public class FluxApp extends Application {
         } catch(Exception e) {e.printStackTrace();}
     }
 
-    private synchronized void loadLampData() {
+    public synchronized void loadLampData() {
         try {
             FileInputStream FIStream = openFileInput(FILENAME);
             ObjectInputStream OIStream = new ObjectInputStream(FIStream);

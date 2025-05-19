@@ -61,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
         showHideNoLamp();
     }
 
+    // I hate violating DRY, but no other choice for now.
+    // TODO: FIX IT ASAP
+    @Override
+    protected void onStop() {
+        super.onStop();
+        fluxApp.saveLampData();
+    }
+
     void showHideNoLamp() {
         if(fluxApp.getLampCount() == 0)
             noLamp.setVisibility(CardView.VISIBLE);
