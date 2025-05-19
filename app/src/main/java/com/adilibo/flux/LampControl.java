@@ -106,9 +106,7 @@ public class LampControl extends AppCompatActivity {
             colorPickerView.setPaletteDrawable(drawable);
             resetPhoto.setEnabled(true);
             success.show();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
     protected void deleteLamp() {
