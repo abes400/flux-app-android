@@ -110,7 +110,7 @@ public class LampControl extends AppCompatActivity {
     }
 
     protected void deleteLamp() {
-        new AlertDialog.Builder(this)
+        AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.rem_title)
                 .setMessage(R.string.rem_desc)
                 .setPositiveButton(R.string.Y, (dialogInterface, i) -> {
@@ -118,7 +118,10 @@ public class LampControl extends AppCompatActivity {
                         finish();
                 })
                 .setNegativeButton(R.string.N, (inte, i) -> {})
-                .show();
+                .create();
+        dialog.show();
+        dialog.getButton(dialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.secondary));
+        dialog.getButton(dialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.secondary));
     }
 
     protected void renameLampDialog() {
@@ -126,7 +129,7 @@ public class LampControl extends AppCompatActivity {
         input.setSingleLine(true);
         input.setText(title.getText().toString());
         input.setPadding(50, 50, 50, 50);
-        new AlertDialog.Builder(this)
+        AlertDialog dialog = new AlertDialog.Builder(this)
             .setTitle(R.string.rename)
             .setView(input)
             .setPositiveButton(R.string.ok, (dialogInterface, i) -> {
@@ -134,7 +137,10 @@ public class LampControl extends AppCompatActivity {
                 if(lamp.rename(input.getText().toString())) title.setText(newName);
             })
             .setNegativeButton(R.string.cancel, ((dialogInterface, i) ->{}))
-            .show();
+            .create();
+        dialog.show();
+        dialog.getButton(dialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.secondary));
+        dialog.getButton(dialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.secondary));
     }
     protected void uploadPicture() {
         Intent imageIntent = new Intent(Intent.ACTION_PICK);
