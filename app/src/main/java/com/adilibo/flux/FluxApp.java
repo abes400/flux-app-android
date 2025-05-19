@@ -4,11 +4,6 @@ import android.app.Application;
 import android.content.Context;
 //import android.util.Log;
 
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleObserver;
-import androidx.lifecycle.OnLifecycleEvent;
-import androidx.lifecycle.ProcessLifecycleOwner;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -16,19 +11,15 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 
-public class FluxApp extends Application implements LifecycleObserver {
+public class FluxApp extends Application {
     final String FILENAME = "LAMP_DATA";
     ArrayList<LampRVModel> _lamps;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
         loadLampData();
     }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    public void onAppBackgrounded() {saveLampData();}
 
     public synchronized void registerLamp(LampRVModel newLamp) {_lamps.add(newLamp);}
     public synchronized LampRVModel getLampAt(int index) {return _lamps.get(index);}
