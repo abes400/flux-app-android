@@ -32,6 +32,9 @@ android {
 }
 
 dependencies {
+    implementation ("com.github.harry1453:android-bluetooth-serial:v1.1")
+    implementation ("io.reactivex.rxjava2:rxjava:2.1.12")
+    implementation ("io.reactivex.rxjava2:rxandroid:2.0.2")
     implementation("androidx.lifecycle:lifecycle-process:2.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime:2.9.0")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
