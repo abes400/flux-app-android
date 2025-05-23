@@ -52,9 +52,6 @@ public class LampControl extends AppCompatActivity {
         title.setText(lamp.getName());
         title.setOnClickListener(v -> renameLampDialog());
 
-        Button delete = findViewById(R.id.delete);
-        delete.setOnClickListener(v -> deleteLamp());
-
         SwitchCompat toggleLC = findViewById(R.id.toggle_LC);
         toggleLC.setChecked(lamp.isOn);
         toggleLC.setOnClickListener(v -> lamp.isOn = toggleLC.isChecked());
@@ -108,21 +105,6 @@ public class LampControl extends AppCompatActivity {
         } catch (Exception e) { e.printStackTrace(); }
     }
 
-    protected void deleteLamp() {
-        AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.rem_title)
-                .setMessage(R.string.rem_desc)
-                .setPositiveButton(R.string.Y, (dialogInterface, i) -> {
-                    if(fluxApp.removeLampAt(index))
-                        finish();
-                })
-                .setNegativeButton(R.string.N, (inte, i) -> {})
-                .create();
-        dialog.show();
-        dialog.getButton(dialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.secondary));
-        dialog.getButton(dialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.secondary));
-    }
-
     protected void renameLampDialog() {
         final EditText input = new EditText(this);
         input.setSingleLine(true);
@@ -138,8 +120,8 @@ public class LampControl extends AppCompatActivity {
             .setNegativeButton(R.string.cancel, ((dialogInterface, i) ->{}))
             .create();
         dialog.show();
-        dialog.getButton(dialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.secondary));
-        dialog.getButton(dialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.secondary));
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.secondary));
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.secondary));
     }
     protected void uploadPicture() {
         Intent imageIntent = new Intent(Intent.ACTION_PICK);

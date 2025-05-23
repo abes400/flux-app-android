@@ -34,21 +34,6 @@
         app:layout_constraintStart_toStartOf="@+id/toolbar_LC"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/delete"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:text="@string/rem"
-        android:textSize="0sp"
-        android:tooltipText="@string/rem"
-        app:icon="@drawable/delete"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:iconSize="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar_LC"
-        app:layout_constraintEnd_toStartOf="@+id/toggle_LC"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/title_LC"
         android:layout_width="0dp"
@@ -61,7 +46,7 @@
         android:textColorLink="#FDFDFD"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar_LC"
-        app:layout_constraintEnd_toStartOf="@+id/delete"
+        app:layout_constraintEnd_toStartOf="@+id/toggle_LC"
         app:layout_constraintStart_toEndOf="@+id/back_LC"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
