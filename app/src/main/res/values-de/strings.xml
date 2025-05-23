@@ -46,4 +46,7 @@
     ]]>
     </string>
     <string name="lamp">Lampe</string>
+    <string name="bt_popup_title">Bluetooth-Zugriffsberechtigung Erforderlich</string>
+    <string name="bt_settings">ZU EINSTELLUNGEN</string>
+    <string name="exit">Beenden</string>
 </resources>

@@ -89,7 +89,7 @@ public class LampControl extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        fluxApp.saveLampData();
+        fluxApp.saveOneLamp(index);
     }
 
     @Override

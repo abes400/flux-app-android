@@ -1,24 +1,37 @@
 package com.adilibo.flux;
 
-import android.app.Application;
-import android.content.Context;
-//import android.util.Log;
+import static androidx.core.app.ActivityCompat.requestPermissions;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import android.Manifest;
+import android.app.Application;
+import android.bluetooth.BluetoothDevice;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.util.Log;
+import android.widget.Toast;
+//import android.util.Log;
+import androidx.core.app.ActivityCompat;
+
 import java.util.ArrayList;
+import java.util.Collection;
+
+import com.harrysoft.androidbluetoothserial.BluetoothManager;
 
 
 public class FluxApp extends Application {
-    final String FILENAME = "LAMP_DATA";
     ArrayList<LampRVModel> _lamps;
+
+    SharedPreferences sPrefs;
+    SharedPreferences.Editor sPrefEdit;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        loadLampData();
+        sPrefs = getSharedPreferences("LAMP_METADATA", MODE_PRIVATE);
+        sPrefEdit = sPrefs.edit();
+
+        _lamps = new ArrayList<>();
+
     }
 
     public synchronized void registerLamp(LampRVModel newLamp) {_lamps.add(newLamp);}
@@ -32,25 +45,54 @@ public class FluxApp extends Application {
         return false;
     }
 
+    public synchronized  void saveOneLamp(int index) {
+        LampRVModel lamp = _lamps.get(index);
+        String addr = lamp.getAddress();
+        sPrefEdit.putString(addr + "_nickname", lamp.getName());
+        sPrefEdit.putString(addr + "_hex", lamp.hexStr);
+        sPrefEdit.putBoolean(addr + "_auto", lamp.auto_brightness);
+        sPrefEdit.putBoolean(addr + "_on_off", lamp.isOn);
+        sPrefEdit.apply();
+    }
+
     public synchronized void saveLampData() {
-        try {
-            FileOutputStream FOStream = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-            ObjectOutputStream OOStream = new ObjectOutputStream(FOStream);
-            OOStream.writeObject(_lamps);
-            OOStream.close();
-        } catch(Exception e) {e.printStackTrace();}
+        sPrefEdit.clear();
+
+        for(LampRVModel lamp : _lamps) {
+            String addr = lamp.getAddress();
+            sPrefEdit.putString(addr + "_nickname", lamp.getName());
+            sPrefEdit.putString(addr + "_hex", lamp.hexStr);
+            sPrefEdit.putBoolean(addr + "_auto", lamp.auto_brightness);
+            sPrefEdit.putBoolean(addr + "_on_off", lamp.isOn);
+        }
+
+        sPrefEdit.apply();
     }
 
     public synchronized void loadLampData() {
-        try {
-            FileInputStream FIStream = openFileInput(FILENAME);
-            ObjectInputStream OIStream = new ObjectInputStream(FIStream);
-            _lamps = (ArrayList<LampRVModel>) OIStream.readObject();
-            OIStream.close();
-        } catch(Exception e) {
-            e.printStackTrace();
-            _lamps = new ArrayList<>();
+        BluetoothManager btMgr = BluetoothManager.getInstance();
+        if (btMgr == null) {
+            Toast.makeText(this, "BT not supported", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        Collection <BluetoothDevice> pairedDevices = btMgr.getPairedDevicesList();
+
+        for(BluetoothDevice device : pairedDevices) {
+            String address = device.getAddress();
+            String name = device.getName();
+
+            _lamps.add(new LampRVModel(
+                    sPrefs.getString(address + "_nickname", "NEWLAMP"),
+                    address,
+                    sPrefs.getString(address + "_hex", "FFFFFFFF"),
+                    sPrefs.getBoolean(address + "_auto", false),
+                    sPrefs.getBoolean(address + "_on_off", false)
+            ));
+        }
+
+
+        saveLampData();
     }
 }
 

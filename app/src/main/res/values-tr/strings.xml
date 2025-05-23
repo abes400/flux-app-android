@@ -46,4 +46,7 @@
     ]]>
     </string>
     <string name="lamp">Lamba</string>
+    <string name="bt_popup_title">Bluetooth için İzin Gerekli</string>
+    <string name="bt_settings">Ayarlara Git</string>
+    <string name="exit">Çık</string>
 </resources>
