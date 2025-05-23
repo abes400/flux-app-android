@@ -10,6 +10,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import com.harrysoft.androidbluetoothserial.BluetoothManager;
+import com.harrysoft.androidbluetoothserial.BluetoothSerialDevice;
+import com.harrysoft.androidbluetoothserial.SimpleBluetoothDeviceInterface;
+
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class FluxApp extends Application {
@@ -17,6 +23,10 @@ public class FluxApp extends Application {
 
     SharedPreferences sPrefs;
     SharedPreferences.Editor sPrefEdit;
+
+
+    private BluetoothManager btMgr = BluetoothManager.getInstance();
+    private SimpleBluetoothDeviceInterface deviceInterface;
 
     @Override
     public void onCreate() {
@@ -26,6 +36,34 @@ public class FluxApp extends Application {
 
         _lamps = new ArrayList<>();
 
+        if (btMgr == null) {
+            Toast.makeText(this, "BT not supported", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public synchronized void connectDevice(int index) {
+        btMgr.openSerialDevice(_lamps.get(index).getAddress())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::onConnected, this::onConnectionError);
+    }
+
+    private void disconnect() {
+        btMgr.close();
+        deviceInterface = null;
+    }
+
+
+    private void onConnected(BluetoothSerialDevice device) {
+        deviceInterface = device.toSimpleDeviceInterface();
+        deviceInterface.setErrorListener(this::onConnectionError);
+
+        deviceInterface.sendMessage("#FFFFFFFF/");
+    }
+
+    public void onConnectionError(Throwable error) {
+        // TODO: Error handling
     }
 
     public synchronized void registerLamp(LampRVModel newLamp) {_lamps.add(newLamp);}
@@ -64,15 +102,7 @@ public class FluxApp extends Application {
     }
 
     public synchronized void loadLampData() {
-        BluetoothManager btMgr = BluetoothManager.getInstance();
-        if (btMgr == null) {
-            Toast.makeText(this, "BT not supported", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        Collection <BluetoothDevice> pairedDevices = btMgr.getPairedDevicesList();
-
-        for(BluetoothDevice device : pairedDevices) {
+        for(BluetoothDevice device : btMgr.getPairedDevicesList()) {
             String address = device.getAddress();
             String name = device.getName();
 
