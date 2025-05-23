@@ -23,7 +23,6 @@ import com.skydoves.colorpickerview.ColorPickerView;
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 import com.skydoves.colorpickerview.sliders.BrightnessSlideBar;
 
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 public class LampControl extends AppCompatActivity {

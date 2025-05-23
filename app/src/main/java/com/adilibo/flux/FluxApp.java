@@ -1,16 +1,10 @@
 package com.adilibo.flux;
 
-import static androidx.core.app.ActivityCompat.requestPermissions;
-
-import android.Manifest;
 import android.app.Application;
 import android.bluetooth.BluetoothDevice;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.util.Log;
 import android.widget.Toast;
 //import android.util.Log;
-import androidx.core.app.ActivityCompat;
 
 import java.util.ArrayList;
 import java.util.Collection;
