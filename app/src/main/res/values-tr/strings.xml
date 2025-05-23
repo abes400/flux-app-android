@@ -18,9 +18,6 @@
     <string name="ok">Tamam</string>
     <string name="cancel">Vazgeç</string>
     <string name="tapedit">Yeniden adlandırmak için dokunun.</string>
-    <string name="rem">Kaldır</string>
-    <string name="rem_title">Bu lambayı kaldırmak istediğinizden emin misiniz?</string>
-    <string name="rem_desc">Bu eylem geri alınamaz.</string>
     <string name="Y">Evet</string>
     <string name="N">Hayır</string>
     <string name="github">GitHub Sayfasına Git</string>

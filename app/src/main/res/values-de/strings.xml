@@ -18,11 +18,8 @@
     <string name="ok">OK</string>
     <string name="cancel">Abbrechen</string>
     <string name="tapedit">Tippe, um umzubenennen.</string>
-    <string name="rem_desc">Diese Aktion ist unwiderruflich.</string>
     <string name="Y">Ja</string>
     <string name="N">Nein</string>
-    <string name="rem">Entfernen</string>
-    <string name="rem_title">Sind Sie sicher, dass Sie diese Lampe entfernen möchten?</string>
     <string name="github">GitHub-seite Ansehen</string>
     <string name="about_text">
     <![CDATA[
