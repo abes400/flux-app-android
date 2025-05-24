@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     private void fetchLampDataByPermission() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) { // for 12+
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT},
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT, Manifest.permission.BLUETOOTH_SCAN},
                         BT_REQ_CODE);
             } else fluxApp.loadLampData();
         } else fluxApp.loadLampData();

@@ -13,12 +13,14 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 //import android.util.Log;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.card.MaterialCardView;
+import com.skydoves.colorpickerview.ActionMode;
 import com.skydoves.colorpickerview.ColorPickerView;
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
 import com.skydoves.colorpickerview.sliders.BrightnessSlideBar;
@@ -35,6 +37,9 @@ public class LampControl extends AppCompatActivity {
     Button resetPhoto;
     ColorPickerView colorPickerView;
 
+    final int MAX_DELAY_COEFF = 7;
+    int delay = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +49,28 @@ public class LampControl extends AppCompatActivity {
         success = Toast.makeText(this, R.string.image_success, Toast.LENGTH_SHORT);
         index = getIntent().getIntExtra("Index", 0);
         lamp = fluxApp.getLampAt(index);
+
+        BrightnessSlideBar brightnessSlideBar = findViewById(R.id.brightnessSlide);
+        MaterialCardView pickerCardView = findViewById(R.id.picker_card);
+
+        colorPickerView = findViewById(R.id.colorPickerView);
+        colorPickerView.attachBrightnessSlider(brightnessSlideBar);
+        colorPickerView.setInitialColor(Color.parseColor("#" + lamp.getHexStr()));
+        colorPickerView.setColorListener((ColorEnvelopeListener) (envelope, fromUser) -> {
+            delay++;
+            if(delay >= MAX_DELAY_COEFF) {
+                delay = 0;
+                lamp.setHexStr(envelope.getHexCode());
+                pickerCardView.setStrokeColor(envelope.getColor());
+                fluxApp.sendCommand(index);
+
+            }
+        });
+        //colorPickerView.setActionMode(ActionMode.LAST);
+
+        SwitchCompat autoBrightness = findViewById(R.id.autoBrightness);
+        autoBrightness.setChecked(lamp.auto_brightness);
+        autoBrightness.setOnClickListener(v -> lamp.auto_brightness = autoBrightness.isChecked());
 
         Button backLC = findViewById(R.id.back_LC);
         backLC.setOnClickListener(v -> finish());
@@ -65,21 +92,6 @@ public class LampControl extends AppCompatActivity {
             colorPickerView.setHsvPaletteDrawable();
             resetPhoto.setEnabled(false);
         });
-
-        BrightnessSlideBar brightnessSlideBar = findViewById(R.id.brightnessSlide);
-        MaterialCardView pickerCardView = findViewById(R.id.picker_card);
-
-        colorPickerView = findViewById(R.id.colorPickerView);
-        colorPickerView.attachBrightnessSlider(brightnessSlideBar);
-        colorPickerView.setInitialColor(Color.parseColor("#" + lamp.getHexStr()));
-        colorPickerView.setColorListener((ColorEnvelopeListener) (envelope, fromUser) -> {
-            lamp.setHexStr(envelope.getHexCode());
-            pickerCardView.setStrokeColor(envelope.getColor());
-        });
-
-        SwitchCompat autoBrightness = findViewById(R.id.autoBrightness);
-        autoBrightness.setChecked(lamp.auto_brightness);
-        autoBrightness.setOnClickListener(v -> lamp.auto_brightness = autoBrightness.isChecked());
 
     }
 

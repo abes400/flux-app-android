@@ -31,6 +31,7 @@ public class FluxApp extends Application {
 
     private BluetoothManager btMgr = BluetoothManager.getInstance();
     private SimpleBluetoothDeviceInterface deviceInterface;
+    private String currentMAC = "";
 
     @Override
     public void onCreate() {
@@ -55,47 +56,46 @@ public class FluxApp extends Application {
 
     public void disconnect() {
         if(deviceInterface != null) {
-            btMgr.closeDevice(deviceInterface);
+            btMgr.closeDevice(currentMAC);
             deviceInterface = null;
-            Log.d("INFO", "Disconnected");
         }
     }
 
     private void onConnected(BluetoothSerialDevice device) {
-        deviceInterface = device.toSimpleDeviceInterface();
-        deviceInterface.setErrorListener(this::onConnectionError);
-        deviceInterface.setMessageSentListener(this::onSent);
+        String newMAC = device.getMac();
 
-        // HERE COMES THE STUPIDEST IMPLEMENTATION EVER KNOWN TO MANKIND
-        boolean isOn = false;
-        for(LampRVModel lamp : _lamps) {
-            if(lamp.getAddress().equals(device.getMac())) {
-                isOn = lamp.isOn;
-                break;
-            }
+        if(!currentMAC.equals(newMAC)){
+            disconnect();
+            currentMAC = newMAC;
         }
 
-        deviceInterface.sendMessage(isOn ? "\\on/" : "\\off/");
-    }
+        deviceInterface = device.toSimpleDeviceInterface();
+        deviceInterface.setErrorListener(this::onConnectionError);
 
-    private void onSent(String message) {
-        if(currentAct == 0)
-            disconnect();
+        // HERE COMES THE STUPIDEST IMPLEMENTATION EVER KNOWN TO MANKIND
+        int index = 0;
+        for(LampRVModel lamp : _lamps) {
+            if(lamp.getAddress().equals(device.getMac())) {
+                sendCommand(index);
+                break;
+            }
+            index++;
+        }
     }
 
     public void onConnectionError(Throwable error) {
-        // TODO: Error handling
+        Toast.makeText(this, error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+        error.printStackTrace();
     }
 
-    public synchronized void sendColor(@NonNull String  color) {
+    public synchronized void sendCommand(@NonNull int  index) {
         if(deviceInterface != null) {
-            deviceInterface.sendMessage(color);
+            LampRVModel lamp = _lamps.get(index);
+            deviceInterface.sendMessage("\\" + (lamp.isOn ? '1' : '0')
+                    + (lamp.auto_brightness ? '1' : '0') + lamp.getHexStr() + "/");
         }
     }
 
-    public synchronized void sendCommand(int cmd) {
-
-    }
 
     public synchronized void registerLamp(LampRVModel newLamp) {_lamps.add(newLamp);}
     public synchronized LampRVModel getLampAt(int index) {return _lamps.get(index);}
@@ -138,7 +138,7 @@ public class FluxApp extends Application {
             String name = device.getName();
 
             _lamps.add(new LampRVModel(
-                    sPrefs.getString(address + "_nickname", "NEWLAMP"),
+                    sPrefs.getString(address + "_nickname", name),
                     address,
                     sPrefs.getString(address + "_hex", "FFFFFFFF"),
                     sPrefs.getBoolean(address + "_auto", false),
