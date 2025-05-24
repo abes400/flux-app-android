@@ -3,8 +3,11 @@ package com.adilibo.flux;
 import android.app.Application;
 import android.bluetooth.BluetoothDevice;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.Toast;
 //import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,6 +26,7 @@ public class FluxApp extends Application {
 
     SharedPreferences sPrefs;
     SharedPreferences.Editor sPrefEdit;
+    public int currentAct = 0;
 
 
     private BluetoothManager btMgr = BluetoothManager.getInstance();
@@ -49,21 +53,48 @@ public class FluxApp extends Application {
                 .subscribe(this::onConnected, this::onConnectionError);
     }
 
-    private void disconnect() {
-        btMgr.close();
-        deviceInterface = null;
+    public void disconnect() {
+        if(deviceInterface != null) {
+            btMgr.closeDevice(deviceInterface);
+            deviceInterface = null;
+            Log.d("INFO", "Disconnected");
+        }
     }
-
 
     private void onConnected(BluetoothSerialDevice device) {
         deviceInterface = device.toSimpleDeviceInterface();
         deviceInterface.setErrorListener(this::onConnectionError);
+        deviceInterface.setMessageSentListener(this::onSent);
 
-        deviceInterface.sendMessage("#FFFFFFFF/");
+        // HERE COMES THE STUPIDEST IMPLEMENTATION EVER KNOWN TO MANKIND
+        boolean isOn = false;
+        for(LampRVModel lamp : _lamps) {
+            if(lamp.getAddress().equals(device.getMac())) {
+                isOn = lamp.isOn;
+                break;
+            }
+        }
+
+        deviceInterface.sendMessage(isOn ? "\\on/" : "\\off/");
+    }
+
+    private void onSent(String message) {
+        if(currentAct == 0)
+            disconnect();
     }
 
     public void onConnectionError(Throwable error) {
         // TODO: Error handling
+    }
+
+    public synchronized void sendColor(@NonNull String  color) {
+        if(deviceInterface != null) {
+            deviceInterface.sendMessage(color);
+        }
+    }
+
+    public synchronized void sendCommand(int cmd) {
+
     }
 
     public synchronized void registerLamp(LampRVModel newLamp) {_lamps.add(newLamp);}

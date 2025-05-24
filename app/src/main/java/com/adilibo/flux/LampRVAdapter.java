@@ -65,7 +65,11 @@ public class LampRVAdapter extends RecyclerView.Adapter<LampRVAdapter.Holder> {
             });
 
             lampToggle.setOnClickListener(v ->
-                    fluxApp.getLampAt(getAdapterPosition()).isOn = lampToggle.isChecked());
+            {
+                int index = getAdapterPosition();
+                fluxApp.getLampAt(index).isOn = lampToggle.isChecked();
+                fluxApp.connectDevice(index);
+            });
         }
     }
 }

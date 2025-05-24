@@ -80,12 +80,21 @@ public class LampControl extends AppCompatActivity {
         SwitchCompat autoBrightness = findViewById(R.id.autoBrightness);
         autoBrightness.setChecked(lamp.auto_brightness);
         autoBrightness.setOnClickListener(v -> lamp.auto_brightness = autoBrightness.isChecked());
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fluxApp.connectDevice(index);
+        fluxApp.currentAct = 1;
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         fluxApp.saveOneLamp(index);
+        fluxApp.disconnect();
     }
 
     @Override

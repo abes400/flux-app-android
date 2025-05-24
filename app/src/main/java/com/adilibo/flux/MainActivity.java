@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        fluxApp.currentAct = 0;
         lampRVAdapter.notifyDataSetChanged();
         showHideNoLamp();
     }
