@@ -42,12 +42,6 @@ public class MainActivity extends AppCompatActivity {
         fluxApp = (FluxApp) getApplication();
         lampRVAdapter = new LampRVAdapter(this, fluxApp);
 
-        Toolbar toolbarHome = findViewById(R.id.toolbar_home);
-        toolbarHome.setOnLongClickListener(v -> {
-            regLampTemp();
-            return true;
-        });
-
         Button about = findViewById(R.id.about);
         about.setOnClickListener( v -> {
             Intent intent = new Intent(v.getContext(), About.class);
@@ -55,14 +49,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         noLamp = findViewById(R.id.no_lamp);
-        noLamp.setOnClickListener(v -> regLampTemp());
+        noLamp.setOnClickListener(v -> openBTMenu());
 
         RecyclerView lampRecyclerView = findViewById(R.id.lampRecyclerView);
         lampRecyclerView.setAdapter(lampRVAdapter);
         lampRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         FloatingActionButton addDevice = findViewById(R.id.addDevice);
-        addDevice.setOnClickListener(v -> regLampTemp());
+        addDevice.setOnClickListener(v -> openBTMenu());
 
 
         fetchLampDataByPermission();
@@ -95,13 +89,11 @@ public class MainActivity extends AppCompatActivity {
         else noLamp.setVisibility(CardView.GONE);
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    void regLampTemp() {
-        if(fluxApp.getLampCount() == 0)
-            noLamp.setVisibility(CardView.GONE);
-        fluxApp.registerLamp(new LampRVModel(getString(R.string.lamp) + " " + i, ""+i,"FFFFFFFF",  i%2==0, i%4==0));
-        i = fluxApp.getLampCount();
-        lampRVAdapter.notifyDataSetChanged();
+    void openBTMenu() {
+        //lampRVAdapter.notifyDataSetChanged();
+        Intent btIntent = new Intent();
+        btIntent.setAction(Settings.ACTION_BLUETOOTH_SETTINGS);
+        startActivity(btIntent);
     }
 
     private void fetchLampDataByPermission() {

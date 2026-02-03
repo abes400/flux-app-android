@@ -84,7 +84,9 @@ public class FluxApp extends Application {
     }
 
     public void onConnectionError(Throwable error) {
-        Toast.makeText(this, error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+        btMgr = BluetoothManager.getInstance();
+
+        Toast.makeText(this, "Check BT connection or whether another device is connecting", Toast.LENGTH_SHORT).show();
         error.printStackTrace();
     }
 

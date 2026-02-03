@@ -1,9 +1,12 @@
 package com.adilibo.flux;
 
+import android.os.Handler;
 import android.content.Context;
 import android.content.Intent;
 //import android.util.Log;
 import android.graphics.Color;
+import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,9 +69,13 @@ public class LampRVAdapter extends RecyclerView.Adapter<LampRVAdapter.Holder> {
 
             lampToggle.setOnClickListener(v ->
             {
+                lampToggle.setEnabled(false);
                 int index = getAdapterPosition();
                 fluxApp.getLampAt(index).isOn = lampToggle.isChecked();
                 fluxApp.connectDevice(index);
+                new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                    lampToggle.setEnabled(true);
+                }, 0);
             });
         }
     }
